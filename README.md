@@ -16,4 +16,9 @@ The public homepage intentionally lists only public repositories. Private reposi
 
 ## Local edit
 
-This is a static Pages site. Edit `index.html`, then push to `main`.
+Use the project script instead of editing generated files by hand:
+
+```bash
+python3 /Users/rexwzh/Playground/projects/chattea/07-14-chattea-dev-docs/scripts/generate_chatarch_pages_index.py \
+  --repo-dir /Users/rexwzh/Playground/core/ChatArch.github.io
+```
