@@ -1,4 +1,4 @@
-# ChatArch Public Docs Hub
+# ChatArch Public Project Map
 
 This repository backs the public GitHub Pages entry point for ChatArch:
 
@@ -6,19 +6,22 @@ This repository backs the public GitHub Pages entry point for ChatArch:
 https://arch.gh.wzhecnu.cn/
 ```
 
-Project documentation is expected to live under repository paths, for example:
+This is the organization-level public project map and documentation hub. It must not become a landing page for a single package; individual projects are listed only as peer public repositories.
 
-```text
-https://arch.gh.wzhecnu.cn/ChatTea/
-```
+## Public-safety rule
 
-The public homepage intentionally lists only public repositories. Private repositories, credentials, deployment details, and internal service URLs must not be added here.
+Only public GitHub repositories are indexed. Private repositories, credentials, deployment details, and internal service URLs must not be added here.
+
+## Generated state
+
+- Public repositories indexed: 43
+- Generated: 2026-07-14 18:46 UTC
+- Shared docs route: `https://arch.gh.wzhecnu.cn/<ProjectName>/`
 
 ## Local edit
 
 Use the project script instead of editing generated files by hand:
 
 ```bash
-python3 /Users/rexwzh/Playground/projects/chattea/07-14-chattea-dev-docs/scripts/generate_chatarch_pages_index.py \
-  --repo-dir /Users/rexwzh/Playground/core/ChatArch.github.io
+python3 /Users/rexwzh/Playground/projects/chattea/07-14-chattea-dev-docs/scripts/generate_chatarch_pages_index.py   --repo-dir /Users/rexwzh/Playground/core/ChatArch.github.io
 ```

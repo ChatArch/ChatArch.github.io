@@ -3,652 +3,509 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ChatArch</title>
-  <meta name="description" content="ChatArch public documentation hub for agent, developer-tooling, Git, package, DNS, and automation projects.">
+  <title>ChatArch - Public Project Map</title>
+  <meta name="description" content="ChatArch public project map and documentation hub.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #16120f;
-      --muted: #665f56;
-      --paper: #f7efe2;
-      --paper-strong: #fffaf0;
-      --copper: #b9552f;
-      --moss: #50623a;
-      --blueprint: #174c62;
-      --line: rgba(22, 18, 15, .16);
-      --shadow: 0 26px 70px rgba(71, 45, 27, .18);
+      --paper: #f1eadb;
+      --paper-2: #fff9ec;
+      --ink: #17130f;
+      --muted: #6f6558;
+      --line: rgba(23, 19, 15, 0.18);
+      --rust: #c95a32;
+      --teal: #0f7d7e;
+      --lime: #b8c84b;
+      --blue: #2457a6;
+      --shadow: 0 24px 70px rgba(41, 29, 12, 0.18);
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       color: var(--ink);
       background:
-        radial-gradient(circle at 12% 12%, rgba(185, 85, 47, .18), transparent 28rem),
-        radial-gradient(circle at 84% 8%, rgba(23, 76, 98, .20), transparent 30rem),
-        linear-gradient(135deg, #fff8ea 0%, #f1e3cf 42%, #e4d2b9 100%);
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
+        radial-gradient(circle at 12% 12%, rgba(184, 200, 75, 0.5), transparent 26rem),
+        radial-gradient(circle at 78% 6%, rgba(15, 125, 126, 0.26), transparent 24rem),
+        linear-gradient(135deg, var(--paper-2), var(--paper));
+      font-family: "Space Grotesk", "Avenir Next", sans-serif;
       min-height: 100vh;
     }
-    a { color: inherit; }
+    a { color: inherit; text-decoration: none; }
     .shell { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
-    header { padding: 34px 0 18px; }
-    .nav { display: flex; justify-content: space-between; gap: 18px; align-items: center; }
-    .brand { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .nav-links { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
-    .hero {
-      margin: 28px 0 32px;
-      padding: clamp(30px, 6vw, 74px);
-      border: 1px solid var(--line);
-      border-radius: 36px;
-      background:
-        linear-gradient(135deg, rgba(255, 250, 240, .92), rgba(255, 250, 240, .68)),
-        repeating-linear-gradient(90deg, rgba(22, 18, 15, .035) 0 1px, transparent 1px 44px),
-        repeating-linear-gradient(0deg, rgba(22, 18, 15, .03) 0 1px, transparent 1px 44px);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero:after {
-      content: "";
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      right: -70px;
-      top: -70px;
-      border: 34px solid rgba(80, 98, 58, .18);
-      border-radius: 50%;
-    }
-    .eyebrow { color: var(--copper); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; }
-    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; margin: 0; line-height: .96; }
-    h1 { font-size: clamp(48px, 10vw, 118px); max-width: 980px; letter-spacing: -.06em; margin-top: 16px; }
-    .hero-copy { max-width: 720px; color: var(--muted); font-size: clamp(16px, 2vw, 20px); line-height: 1.65; margin: 26px 0 0; }
-    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      border: 1px solid var(--ink);
-      border-radius: 999px;
-      padding: 12px 18px;
-      background: var(--ink);
-      color: var(--paper-strong);
-      font-weight: 700;
-    }
-    .button.secondary { background: transparent; color: var(--ink); }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 22px 0 48px; }
-    .stat { padding: 20px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255, 250, 240, .64); }
-    .stat strong { display: block; font-size: 28px; }
-    .section-head { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin: 36px 0 16px; }
-    h2 { font-size: clamp(34px, 5vw, 58px); letter-spacing: -.04em; }
-    .section-head p { max-width: 560px; color: var(--muted); line-height: 1.55; margin: 0; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .project-card {
-      min-height: 210px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 22px;
-      background: rgba(255, 250, 240, .76);
-      box-shadow: 0 16px 38px rgba(71, 45, 27, .10);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .project-topline { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
-    .project-card h3 { font-size: 28px; letter-spacing: -.03em; }
-    .project-card p { color: var(--muted); line-height: 1.5; font-size: 14px; }
-    .project-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .project-links a {
-      text-decoration: none;
-      font-size: 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 7px 10px;
-      background: rgba(255,255,255,.36);
-    }
-    .badge {
-      color: var(--paper-strong);
-      background: var(--moss);
-      border-radius: 999px;
-      padding: 5px 8px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-    .note { margin: 36px 0 56px; color: var(--muted); font-size: 13px; line-height: 1.7; }
-    footer { border-top: 1px solid var(--line); padding: 28px 0 46px; color: var(--muted); font-size: 13px; }
-    @media (max-width: 860px) {
-      .nav { align-items: start; flex-direction: column; }
-      .stats, .grid { grid-template-columns: 1fr; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 28px 0 18px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-mark { width: 42px; height: 42px; border: 2px solid var(--ink); border-radius: 50% 50% 42% 58%; background: conic-gradient(from 20deg, var(--rust), var(--lime), var(--teal), var(--rust)); box-shadow: 5px 5px 0 var(--ink); }
+    nav { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    nav a, .button { border: 1.5px solid var(--ink); border-radius: 999px; padding: 10px 16px; font-weight: 700; background: rgba(255, 249, 236, 0.72); transition: transform 180ms ease, box-shadow 180ms ease; }
+    nav a:hover, .button:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 var(--ink); }
+    .button.primary { background: var(--ink); color: var(--paper-2); }
+    .button.accent { background: var(--lime); }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr); gap: 44px; align-items: stretch; padding: 68px 0 48px; }
+    .hero-copy { border: 2px solid var(--ink); background: rgba(255, 249, 236, 0.78); box-shadow: var(--shadow), 10px 10px 0 var(--ink); border-radius: 34px; padding: clamp(28px, 5vw, 58px); position: relative; overflow: hidden; }
+    .hero-copy::after { content: ""; position: absolute; width: 190px; height: 190px; right: -58px; top: -64px; border-radius: 44% 56% 63% 37%; border: 2px solid var(--ink); background: rgba(201, 90, 50, 0.23); }
+    .kicker { display: inline-flex; gap: 9px; align-items: center; margin: 0 0 22px; color: var(--teal); font-weight: 800; letter-spacing: 0.11em; text-transform: uppercase; }
+    .kicker::before { content: ""; width: 34px; height: 3px; background: var(--teal); }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 0.95; margin: 0; }
+    h1 { font-size: clamp(3.1rem, 8vw, 7rem); letter-spacing: -0.06em; max-width: 9ch; }
+    h2 { font-size: clamp(2.1rem, 4.6vw, 4.4rem); letter-spacing: -0.045em; }
+    h3 { font-size: 1.45rem; letter-spacing: -0.025em; }
+    .lede { max-width: 650px; font-size: clamp(1.12rem, 2vw, 1.42rem); line-height: 1.5; color: #342b22; margin: 26px 0 30px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .manifesto { border: 2px solid var(--ink); border-radius: 34px; background: var(--ink); color: var(--paper-2); padding: 26px; display: grid; gap: 18px; box-shadow: var(--shadow); }
+    .metric { border: 1px solid rgba(255, 249, 236, 0.25); border-radius: 24px; padding: 22px; background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02)); }
+    .metric strong { display: block; font-family: "Fraunces", Georgia, serif; font-size: 3rem; line-height: 1; }
+    .metric span { display: block; color: rgba(255, 249, 236, 0.72); margin-top: 8px; }
+    section { padding: 54px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+    .section-head p { margin: 0; max-width: 560px; color: var(--muted); line-height: 1.55; }
+    .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .pillars article { min-height: 190px; border: 1.5px solid var(--ink); border-radius: 26px; padding: 22px; background: rgba(255, 249, 236, 0.7); box-shadow: 5px 5px 0 rgba(23, 19, 15, 0.85); }
+    .pillars span { display: inline-block; background: var(--rust); color: white; border-radius: 999px; padding: 6px 11px; font-weight: 800; margin-bottom: 42px; }
+    .pillars article:nth-child(2) span { background: var(--teal); }
+    .pillars article:nth-child(3) span { background: var(--blue); }
+    .pillars article:nth-child(4) span { background: var(--ink); }
+    .pillars p { margin: 0; line-height: 1.45; color: #3d3329; }
+    .systems { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .system-card { display: flex; flex-direction: column; justify-content: space-between; gap: 22px; min-height: 230px; border-radius: 30px; padding: 24px; border: 1.5px solid var(--line); background: rgba(255, 249, 236, 0.76); box-shadow: 0 18px 48px rgba(50, 35, 12, 0.11); }
+    .system-card:nth-child(3n + 1) { border-top: 7px solid var(--teal); }
+    .system-card:nth-child(3n + 2) { border-top: 7px solid var(--rust); }
+    .system-card:nth-child(3n) { border-top: 7px solid var(--lime); }
+    .eyebrow { margin: 0 0 12px; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; }
+    .system-card p:not(.eyebrow) { color: #43382d; line-height: 1.55; margin: 12px 0 0; }
+    .links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .links a { font-weight: 800; color: var(--teal); border-bottom: 2px solid currentColor; }
+    .docs-route { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 24px; align-items: center; border: 2px solid var(--ink); border-radius: 34px; padding: clamp(24px, 4vw, 42px); background: linear-gradient(135deg, rgba(15, 125, 126, 0.12), rgba(184, 200, 75, 0.24)), rgba(255, 249, 236, 0.8); box-shadow: 9px 9px 0 var(--ink); }
+    code { display: block; white-space: nowrap; overflow-x: auto; padding: 18px; border-radius: 18px; background: #17130f; color: #fff7df; font-family: "Space Grotesk", monospace; font-weight: 700; }
+    .repo-table-wrap { border: 1.5px solid var(--ink); border-radius: 28px; overflow: hidden; background: rgba(255, 249, 236, 0.78); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 16px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    thead th { background: var(--ink); color: var(--paper-2); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    tbody th a { font-weight: 800; color: var(--blue); }
+    tbody td { color: #473d33; line-height: 1.45; }
+    tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+    footer { padding: 44px 0 60px; color: var(--muted); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line); margin-top: 36px; }
+    @media (max-width: 880px) {
+      .hero, .docs-route { grid-template-columns: 1fr; }
+      .pillars, .systems { grid-template-columns: 1fr; }
       .section-head { align-items: start; flex-direction: column; }
-      .hero { border-radius: 24px; }
+      .topbar { align-items: start; flex-direction: column; }
+      h1 { max-width: none; }
+      table, thead, tbody, tr, th, td { display: block; }
+      thead { display: none; }
+      tbody tr { border-bottom: 1px solid var(--line); padding: 12px 0; }
+      th, td { border: 0; padding: 8px 16px; }
     }
   </style>
 </head>
 <body>
-  <header class="shell nav">
-    <div class="brand">ChatArch</div>
-    <nav class="nav-links" aria-label="Primary">
+  <header class="shell topbar">
+    <a class="brand" href="https://arch.gh.wzhecnu.cn/"><span class="brand-mark" aria-hidden="true"></span><span>ChatArch</span></a>
+    <nav aria-label="Primary">
+      <a href="#charter">Charter</a>
+      <a href="#systems">Public systems</a>
+      <a href="#repos">Repository map</a>
       <a href="https://github.com/ChatArch">GitHub</a>
-      <a href="https://arch.gh.wzhecnu.cn/ChatTea/">ChatTea Docs</a>
-      <a href="#projects">Projects</a>
     </nav>
   </header>
 
-  <main class="shell">
-    <section class="hero">
-      <div class="eyebrow">Public documentation hub</div>
-      <h1>Composable tools for agentic software work.</h1>
-      <p class="hero-copy">ChatArch collects small, inspectable packages for developer automation: environment profiles, GitHub and Gitea workflows, DNS, package publishing, messaging bridges, memory, skills, and docs.</p>
-      <div class="actions">
-        <a class="button" href="https://arch.gh.wzhecnu.cn/ChatTea/">Start with ChatTea</a>
-        <a class="button secondary" href="https://github.com/ChatArch">Browse GitHub</a>
+  <main>
+    <section class="shell hero">
+      <div class="hero-copy">
+        <p class="kicker">public project map</p>
+        <h1>Architecture for agent work.</h1>
+        <p class="lede">ChatArch is the public index for small, inspectable tools that help humans and agents operate software projects: environments, repositories, DNS, package releases, docs, skills, memory, and coordination.</p>
+        <div class="actions">
+          <a class="button primary" href="#systems">Explore public systems</a>
+          <a class="button accent" href="#repos">Open repository map</a>
+          <a class="button" href="https://github.com/ChatArch">GitHub organization</a>
+        </div>
       </div>
+      <aside class="manifesto" aria-label="Public homepage summary">
+        <div class="metric"><strong>43</strong><span>public repositories indexed from GitHub</span></div>
+        <div class="metric"><strong>1</strong><span>shared documentation domain for public project pages</span></div>
+        <div class="metric"><strong>0</strong><span>private or internal repository names intentionally listed here</span></div>
+      </aside>
     </section>
 
-    <section class="stats" aria-label="Public project summary">
-      <div class="stat"><strong>43</strong> public repositories indexed</div>
-      <div class="stat"><strong>Gitea</strong> self-hosted collaboration path</div>
-      <div class="stat"><strong>Docs</strong> project pages under this domain</div>
-    </section>
-
-    <section id="projects">
+    <section id="charter" class="shell">
       <div class="section-head">
-        <h2>Core public surfaces</h2>
-        <p>These repositories are public. Private or internal repositories are intentionally omitted from this page.</p>
+        <h2>What this site is for.</h2>
+        <p>It is not a product landing page for one package. It is the organization-level map for public ChatArch work and the stable entry point for public documentation.</p>
       </div>
-      <div class="grid">
-        <article class="project-card">
-  <div class="project-topline">
-    <h3>ChatTea</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>ChatTea: ChatArch Python package</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatTea">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatTea/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatEnv</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>ChatTool Env manager</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatEnv">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatEnv/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatGH</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>Public ChatArch repository.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatGH">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatGH/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatDNS</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>ChatDNS: ChatArch DNS record, DDNS, and provider helper extracted from ChatTool.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatDNS">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatDNS/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatPyPI</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>ChatPyPI: ChatArch Python package lifecycle helper extracted from ChatTool.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatPyPI">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatPyPI/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatStyle</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>Public ChatArch repository.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatStyle">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatStyle/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatMemory</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>Public ChatArch repository.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatMemory">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatMemory/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatSkill</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>ChatSkill: standalone ChatArch skills CLI extracted from ChatTool</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatSkill">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatSkill/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatBoard</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>ChatBoard: ChatArch kanban board tooling package</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatBoard">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatBoard/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatUV</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>ChatUV: bootstrap uv-based Python environments from low-version Python shells</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatUV">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatUV/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>cc-connect</h3>
-    <span class="badge">core</span>
-  </div>
-  <p>Bridge local AI coding agents (Claude Code, Cursor, Gemini CLI, Codex) to messaging platforms (Feishu/Lark, DingTalk, Slack, Telegram, Discord, LINE, WeChat Work). Chat with your AI dev assistant from anywhere — no public IP required for most platforms.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/cc-connect">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/cc-connect/">Docs path</a>
-  </div>
-</article>
+      <div class="pillars">
+        <article><span>Operate</span><p>Small CLIs for repo, DNS, package, and environment operations.</p></article>
+        <article><span>Document</span><p>A shared pages domain where public project docs live under stable paths.</p></article>
+        <article><span>Coordinate</span><p>Project logs, task boards, memory, skills, and messaging bridges.</p></article>
+        <article><span>Keep boundaries</span><p>The homepage indexes public surfaces only; internal repositories stay out.</p></article>
       </div>
     </section>
 
-    <section>
+    <section id="systems" class="shell">
       <div class="section-head">
-        <h2>Public repository map</h2>
-        <p>Each card links to GitHub and to its expected documentation path on this shared ChatArch Pages domain.</p>
+        <h2>Public systems.</h2>
+        <p>A short, curated slice of public repositories. Individual packages are peers in the architecture; no single project owns this homepage.</p>
       </div>
-      <div class="grid">
-        <article class="project-card">
-  <div class="project-topline">
-    <h3>ChatAction</h3>
-    
-  </div>
-  <p>ChatAction: ChatArch Python package.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatAction">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatAction/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatBlog</h3>
-    
-  </div>
-  <p>chattool for blog poster</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatBlog">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatBlog/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatCI</h3>
-    
-  </div>
-  <p>ChatCI: ChatArch Python package.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatCI">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatCI/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatCRS</h3>
-    
-  </div>
-  <p>ChatCRS package scaffold.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatCRS">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatCRS/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatDraw</h3>
-    
-  </div>
-  <p>ChatDraw package</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatDraw">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatDraw/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatECNU</h3>
-    
-  </div>
-  <p>ChatECNU: ECNU campus portal automation extracted from ChatNet</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatECNU">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatECNU/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatExplore</h3>
-    
-  </div>
-  <p>CLI for explore</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatExplore">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatExplore/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatFlow</h3>
-    
-  </div>
-  <p>Placeholder repository for future ChatArch ChatFlow package.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatFlow">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatFlow/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatGame</h3>
-    
-  </div>
-  <p>Public ChatArch repository.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatGame">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatGame/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatHFD</h3>
-    
-  </div>
-  <p>ChatHFD: ChatArch Hugging Face Download tooling package</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatHFD">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatHFD/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatImg</h3>
-    
-  </div>
-  <p>ChatImg package</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatImg">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatImg/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatJulia</h3>
-    
-  </div>
-  <p>ChatJulia: ChatArch Julia tooling package</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatJulia">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatJulia/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatLark</h3>
-    
-  </div>
-  <p>Placeholder repository for future ChatArch ChatLark package.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatLark">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatLark/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatLean</h3>
-    
-  </div>
-  <p>ChatLean: lightweight ChatArch package scaffold.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatLean">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatLean/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatLink</h3>
-    
-  </div>
-  <p>ChatLink: ChatArch Python package placeholder</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatLink">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatLink/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatLive</h3>
-    
-  </div>
-  <p>ChatLive: ChatArch Python package.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatLive">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatLive/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatNet</h3>
-    
-  </div>
-  <p>Public ChatArch repository.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatNet">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatNet/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatNPM</h3>
-    
-  </div>
-  <p>ChatNPM: ChatArch npm registry and package maintenance helper</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatNPM">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatNPM/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>Chatqiniu</h3>
-    
-  </div>
-  <p>Chatqiniu: ChatArch Python package for Qiniu workflows</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/Chatqiniu">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/Chatqiniu/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatRSS</h3>
-    
-  </div>
-  <p>Public ChatArch repository.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatRSS">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatRSS/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatServe</h3>
-    
-  </div>
-  <p>Public ChatArch repository.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatServe">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatServe/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatShare</h3>
-    
-  </div>
-  <p>ChatShare: ChatArch Python package placeholder</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatShare">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatShare/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatSite</h3>
-    
-  </div>
-  <p>ChatSite package scaffold.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatSite">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatSite/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatSSH</h3>
-    
-  </div>
-  <p>Placeholder repository for future ChatArch ChatSSH package.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatSSH">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatSSH/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatTree</h3>
-    
-  </div>
-  <p>ChatTree: ChatArch Python package.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatTree">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatTree/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatUp</h3>
-    
-  </div>
-  <p>ChatTool Setup</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatUp">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatUp/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>ChatWord</h3>
-    
-  </div>
-  <p>ChatWord: Word document workflows for ChatArch.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/ChatWord">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/ChatWord/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>claude-relay-service</h3>
-    
-  </div>
-  <p>CRS-自建Claude Code镜像，一站式开源中转服务，让 Claude、OpenAI、Gemini、Droid 订阅统一接入，支持拼车共享，更高效分摊成本，原生工具无缝使用。</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/claude-relay-service">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/claude-relay-service/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>gitea</h3>
-    
-  </div>
-  <p>Git with a cup of tea! Painless self-hosted all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/gitea">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/gitea/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>hermes-agent</h3>
-    
-  </div>
-  <p>Internal ChatArch mirror of Hermes Agent.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/hermes-agent">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/hermes-agent/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>hermes-webui</h3>
-    
-  </div>
-  <p>Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/hermes-webui">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/hermes-webui/">Docs path</a>
-  </div>
-</article>
-<article class="project-card">
-  <div class="project-topline">
-    <h3>jixia</h3>
-    
-  </div>
-  <p>A static analysis tool for Lean 4.</p>
-  <div class="project-links">
-    <a href="https://github.com/ChatArch/jixia">GitHub</a>
-    <a href="https://arch.gh.wzhecnu.cn/jixia/">Docs path</a>
-  </div>
-</article>
+      <div class="systems">
+        <article class="system-card">
+          <p class="eyebrow">public system</p>
+          <h3>ChatGH</h3>
+          <p>GitHub operations and repository workflow CLI.</p>
+          <div class="links">
+            <a href="https://github.com/ChatArch/ChatGH">GitHub</a>
+            <a href="https://arch.gh.wzhecnu.cn/ChatGH/">Docs path</a>
+          </div>
+        </article>
+
+        <article class="system-card">
+          <p class="eyebrow">public system</p>
+          <h3>ChatDNS</h3>
+          <p>ChatDNS: ChatArch DNS record, DDNS, and provider helper extracted from ChatTool.</p>
+          <div class="links">
+            <a href="https://github.com/ChatArch/ChatDNS">GitHub</a>
+            <a href="https://arch.gh.wzhecnu.cn/ChatDNS/">Docs path</a>
+          </div>
+        </article>
+
+        <article class="system-card">
+          <p class="eyebrow">public system</p>
+          <h3>ChatEnv</h3>
+          <p>ChatTool Env manager</p>
+          <div class="links">
+            <a href="https://github.com/ChatArch/ChatEnv">GitHub</a>
+            <a href="https://arch.gh.wzhecnu.cn/ChatEnv/">Docs path</a>
+          </div>
+        </article>
+
+        <article class="system-card">
+          <p class="eyebrow">public system</p>
+          <h3>ChatPyPI</h3>
+          <p>ChatPyPI: ChatArch Python package lifecycle helper extracted from ChatTool.</p>
+          <div class="links">
+            <a href="https://github.com/ChatArch/ChatPyPI">GitHub</a>
+            <a href="https://arch.gh.wzhecnu.cn/ChatPyPI/">Docs path</a>
+          </div>
+        </article>
+
+        <article class="system-card">
+          <p class="eyebrow">public system</p>
+          <h3>ChatSkill</h3>
+          <p>ChatSkill: standalone ChatArch skills CLI extracted from ChatTool</p>
+          <div class="links">
+            <a href="https://github.com/ChatArch/ChatSkill">GitHub</a>
+            <a href="https://arch.gh.wzhecnu.cn/ChatSkill/">Docs path</a>
+          </div>
+        </article>
+
+        <article class="system-card">
+          <p class="eyebrow">public system</p>
+          <h3>ChatMemory</h3>
+          <p>Memory and knowledge workflow components.</p>
+          <div class="links">
+            <a href="https://github.com/ChatArch/ChatMemory">GitHub</a>
+            <a href="https://arch.gh.wzhecnu.cn/ChatMemory/">Docs path</a>
+          </div>
+        </article>
+
+        <article class="system-card">
+          <p class="eyebrow">public system</p>
+          <h3>ChatCI</h3>
+          <p>ChatCI: ChatArch Python package.</p>
+          <div class="links">
+            <a href="https://github.com/ChatArch/ChatCI">GitHub</a>
+            <a href="https://arch.gh.wzhecnu.cn/ChatCI/">Docs path</a>
+          </div>
+        </article>
+
+        <article class="system-card">
+          <p class="eyebrow">public system</p>
+          <h3>ChatBoard</h3>
+          <p>ChatBoard: ChatArch kanban board tooling package</p>
+          <div class="links">
+            <a href="https://github.com/ChatArch/ChatBoard">GitHub</a>
+            <a href="https://arch.gh.wzhecnu.cn/ChatBoard/">Docs path</a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <p class="note">This page is a public index only. It does not list private repositories, credentials, deployment details, or internal service URLs.</p>
+    <section class="shell">
+      <div class="docs-route">
+        <div>
+          <p class="eyebrow">documentation route</p>
+          <h2>One domain, many project paths.</h2>
+        </div>
+        <div>
+          <p>Public project documentation is expected to live under this shared ChatArch Pages domain. A path may exist only after that project has deployed its public docs.</p>
+          <code>https://arch.gh.wzhecnu.cn/&lt;ProjectName&gt;/</code>
+        </div>
+      </div>
+    </section>
+
+    <section id="repos" class="shell">
+      <div class="section-head">
+        <h2>Repository map.</h2>
+        <p>Generated from GitHub public repository data. Private repositories are not queried and are not named on this page.</p>
+      </div>
+      <div class="repo-table-wrap">
+        <table>
+          <thead><tr><th>Repository</th><th>Language</th><th>Public description</th><th>Docs path</th></tr></thead>
+          <tbody>
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/cc-connect">cc-connect</a></th>
+            <td>-</td>
+            <td>Bridge local AI coding agents (Claude Code, Cursor, Gemini CLI, Codex) to messaging platforms (Feishu/Lark, DingTalk, Slack, Telegram, Discord, LINE, WeChat Work). Chat with your AI dev assistant from anywhere — no public IP required for most platforms.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/cc-connect/">/cc-connect/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatAction">ChatAction</a></th>
+            <td>-</td>
+            <td>ChatAction: ChatArch Python package.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatAction/">/ChatAction/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatBlog">ChatBlog</a></th>
+            <td>-</td>
+            <td>chattool for blog poster</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatBlog/">/ChatBlog/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatCRS">ChatCRS</a></th>
+            <td>-</td>
+            <td>ChatCRS package scaffold.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatCRS/">/ChatCRS/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatDraw">ChatDraw</a></th>
+            <td>-</td>
+            <td>ChatDraw package</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatDraw/">/ChatDraw/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatECNU">ChatECNU</a></th>
+            <td>-</td>
+            <td>ChatECNU: ECNU campus portal automation extracted from ChatNet</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatECNU/">/ChatECNU/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatExplore">ChatExplore</a></th>
+            <td>-</td>
+            <td>CLI for explore</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatExplore/">/ChatExplore/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatFlow">ChatFlow</a></th>
+            <td>-</td>
+            <td>Placeholder repository for future ChatArch ChatFlow package.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatFlow/">/ChatFlow/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatGame">ChatGame</a></th>
+            <td>-</td>
+            <td>Public ChatArch repository.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatGame/">/ChatGame/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatHFD">ChatHFD</a></th>
+            <td>-</td>
+            <td>ChatHFD: ChatArch Hugging Face Download tooling package</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatHFD/">/ChatHFD/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatImg">ChatImg</a></th>
+            <td>-</td>
+            <td>ChatImg package</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatImg/">/ChatImg/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatJulia">ChatJulia</a></th>
+            <td>-</td>
+            <td>ChatJulia: ChatArch Julia tooling package</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatJulia/">/ChatJulia/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatLark">ChatLark</a></th>
+            <td>-</td>
+            <td>Placeholder repository for future ChatArch ChatLark package.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatLark/">/ChatLark/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatLean">ChatLean</a></th>
+            <td>-</td>
+            <td>ChatLean: lightweight ChatArch package scaffold.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatLean/">/ChatLean/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatLink">ChatLink</a></th>
+            <td>-</td>
+            <td>ChatLink: ChatArch Python package placeholder</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatLink/">/ChatLink/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatLive">ChatLive</a></th>
+            <td>-</td>
+            <td>ChatLive: ChatArch Python package.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatLive/">/ChatLive/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatNet">ChatNet</a></th>
+            <td>-</td>
+            <td>Public ChatArch repository.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatNet/">/ChatNet/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatNPM">ChatNPM</a></th>
+            <td>-</td>
+            <td>ChatNPM: ChatArch npm registry and package maintenance helper</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatNPM/">/ChatNPM/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/Chatqiniu">Chatqiniu</a></th>
+            <td>-</td>
+            <td>Chatqiniu: ChatArch Python package for Qiniu workflows</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/Chatqiniu/">/Chatqiniu/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatRSS">ChatRSS</a></th>
+            <td>-</td>
+            <td>Public ChatArch repository.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatRSS/">/ChatRSS/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatServe">ChatServe</a></th>
+            <td>-</td>
+            <td>Public ChatArch repository.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatServe/">/ChatServe/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatShare">ChatShare</a></th>
+            <td>-</td>
+            <td>ChatShare: ChatArch Python package placeholder</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatShare/">/ChatShare/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatSite">ChatSite</a></th>
+            <td>-</td>
+            <td>ChatSite package scaffold.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatSite/">/ChatSite/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatSSH">ChatSSH</a></th>
+            <td>-</td>
+            <td>Placeholder repository for future ChatArch ChatSSH package.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatSSH/">/ChatSSH/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatStyle">ChatStyle</a></th>
+            <td>-</td>
+            <td>Public ChatArch repository.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatStyle/">/ChatStyle/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatTea">ChatTea</a></th>
+            <td>-</td>
+            <td>ChatTea: ChatArch Python package</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatTea/">/ChatTea/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatTree">ChatTree</a></th>
+            <td>-</td>
+            <td>ChatTree: ChatArch Python package.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatTree/">/ChatTree/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatUp">ChatUp</a></th>
+            <td>-</td>
+            <td>ChatTool Setup</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatUp/">/ChatUp/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatUV">ChatUV</a></th>
+            <td>-</td>
+            <td>ChatUV: bootstrap uv-based Python environments from low-version Python shells</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatUV/">/ChatUV/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/ChatWord">ChatWord</a></th>
+            <td>-</td>
+            <td>ChatWord: Word document workflows for ChatArch.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/ChatWord/">/ChatWord/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/claude-relay-service">claude-relay-service</a></th>
+            <td>-</td>
+            <td>CRS-自建Claude Code镜像，一站式开源中转服务，让 Claude、OpenAI、Gemini、Droid 订阅统一接入，支持拼车共享，更高效分摊成本，原生工具无缝使用。</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/claude-relay-service/">/claude-relay-service/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/gitea">gitea</a></th>
+            <td>-</td>
+            <td>Git with a cup of tea! Painless self-hosted all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/gitea/">/gitea/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/hermes-agent">hermes-agent</a></th>
+            <td>-</td>
+            <td>Internal ChatArch mirror of Hermes Agent.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/hermes-agent/">/hermes-agent/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/hermes-webui">hermes-webui</a></th>
+            <td>-</td>
+            <td>Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/hermes-webui/">/hermes-webui/</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><a href="https://github.com/ChatArch/jixia">jixia</a></th>
+            <td>-</td>
+            <td>A static analysis tool for Lean 4.</td>
+            <td><a href="https://arch.gh.wzhecnu.cn/jixia/">/jixia/</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
 
   <footer class="shell">
-    ChatArch public docs hub. Custom domain: arch.gh.wzhecnu.cn.
+    <span>ChatArch public project map.</span>
+    <span>Generated 2026-07-14 18:46 UTC from GitHub public repository metadata.</span>
   </footer>
 </body>
 </html>
