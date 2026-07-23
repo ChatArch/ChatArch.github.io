@@ -14,10 +14,11 @@ Only public GitHub repositories are indexed. Private repositories, credentials, 
 
 ## Generated state
 
-- Public repositories indexed: 43
-- Generated: 2026-07-14 18:46 UTC
+- Public repositories indexed: 47
+- Generated: 2026-07-23 17:05 UTC
 - Shared docs route: `https://arch.gh.wzhecnu.cn/<ProjectName>/`
-- Lowercase convenience alias: `https://arch.gh.wzhecnu.cn/chatblog/` redirects to `https://arch.gh.wzhecnu.cn/ChatBlog/`
+- Lowercase project aliases generated: 41
+- Alias behavior: `/<projectname>/...` redirects to the canonical `/<ProjectName>/...` route when the public repo name uses mixed case.
 
 ## Local edit
 

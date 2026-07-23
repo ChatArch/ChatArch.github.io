@@ -6,7 +6,49 @@
   <title>Page not found - ChatArch</title>
   <script>
     (function () {
-      var aliases = {chatblog: 'ChatBlog'};
+      var aliases = {
+        "chataction": "ChatAction",
+        "chatblog": "ChatBlog",
+        "chatboard": "ChatBoard",
+        "chatci": "ChatCI",
+        "chatcrs": "ChatCRS",
+        "chatdata": "ChatData",
+        "chatdns": "ChatDNS",
+        "chatdraw": "ChatDraw",
+        "chatecnu": "ChatECNU",
+        "chatenv": "ChatEnv",
+        "chatexplore": "ChatExplore",
+        "chatflow": "ChatFlow",
+        "chatgame": "ChatGame",
+        "chatgh": "ChatGH",
+        "chathfd": "ChatHFD",
+        "chatimg": "ChatImg",
+        "chatjulia": "ChatJulia",
+        "chatlark": "ChatLark",
+        "chatlean": "ChatLean",
+        "chatlink": "ChatLink",
+        "chatlive": "ChatLive",
+        "chatmemory": "ChatMemory",
+        "chatnet": "ChatNet",
+        "chatnpm": "ChatNPM",
+        "chatol": "ChatOL",
+        "chatpypi": "ChatPyPI",
+        "chatqiniu": "Chatqiniu",
+        "chatrss": "ChatRSS",
+        "chatserve": "ChatServe",
+        "chatshare": "ChatShare",
+        "chatsite": "ChatSite",
+        "chatskill": "ChatSkill",
+        "chatssh": "ChatSSH",
+        "chatstyle": "ChatStyle",
+        "chattea": "ChatTea",
+        "chattree": "ChatTree",
+        "chatup": "ChatUp",
+        "chatuv": "ChatUV",
+        "chatvideo": "ChatVideo",
+        "chatword": "ChatWord",
+        "chatzulip": "ChatZulip"
+      };
       var match = window.location.pathname.match(/^\/([^/?#]+)(\/.*)?$/);
       if (!match) return;
       var canonical = aliases[match[1].toLowerCase()];
@@ -19,6 +61,6 @@
 <body>
   <h1>Page not found</h1>
   <p>The requested ChatArch page was not found.</p>
-  <p>If you meant ChatBlog, open <a href="/ChatBlog/">/ChatBlog/</a>.</p>
+  <p>Project routes are case-sensitive. Try the canonical project path from <a href="/">the ChatArch project map</a>.</p>
 </body>
 </html>
