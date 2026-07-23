@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found - ChatArch</title>
+  <script>
+    (function () {
+      var aliases = {chatblog: 'ChatBlog'};
+      var match = window.location.pathname.match(/^\/([^/?#]+)(\/.*)?$/);
+      if (!match) return;
+      var canonical = aliases[match[1].toLowerCase()];
+      if (!canonical || match[1] === canonical) return;
+      var rest = match[2] || '/';
+      window.location.replace('/' + canonical + rest + window.location.search + window.location.hash);
+    }());
+  </script>
+</head>
+<body>
+  <h1>Page not found</h1>
+  <p>The requested ChatArch page was not found.</p>
+  <p>If you meant ChatBlog, open <a href="/ChatBlog/">/ChatBlog/</a>.</p>
+</body>
+</html>

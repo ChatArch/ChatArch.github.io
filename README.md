@@ -17,6 +17,7 @@ Only public GitHub repositories are indexed. Private repositories, credentials, 
 - Public repositories indexed: 43
 - Generated: 2026-07-14 18:46 UTC
 - Shared docs route: `https://arch.gh.wzhecnu.cn/<ProjectName>/`
+- Lowercase convenience alias: `https://arch.gh.wzhecnu.cn/chatblog/` redirects to `https://arch.gh.wzhecnu.cn/ChatBlog/`
 
 ## Local edit
 
