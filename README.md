@@ -22,8 +22,18 @@ Only public GitHub repositories are indexed. Private repositories, credentials, 
 
 ## Local edit
 
-Use the project script instead of editing generated files by hand:
+Use the project script instead of editing generated files by hand, then regenerate aliases and validate:
 
 ```bash
-python3 /Users/rexwzh/Playground/projects/chattea/07-14-chattea-dev-docs/scripts/generate_chatarch_pages_index.py   --repo-dir /Users/rexwzh/Playground/core/ChatArch.github.io
+python3 /Users/rexwzh/Playground/projects/chattea/07-14-chattea-dev-docs/scripts/generate_chatarch_pages_index.py \
+  --repo-dir /Users/rexwzh/Playground/core/ChatArch.github.io
+python3 scripts/generate_lowercase_aliases.py
+python3 scripts/validate_site.py
 ```
+
+## Automation
+
+- `CI`: validates generated aliases, public-safety guards, and staged static output.
+- `Preview Docs`: publishes PR previews to `https://arch.gh.wzhecnu.cn/dev/` from `gh-pages:/dev/` and comments the PR.
+- `Deploy Docs`: publishes the formal site to `https://arch.gh.wzhecnu.cn/` from `gh-pages:/` after merge to `main` / `master`.
+- GitHub Pages source should be `gh-pages` branch `/` once this workflow is enabled.
