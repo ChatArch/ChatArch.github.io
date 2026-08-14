@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ChatArch - Public Project Map</title>
-  <meta name="description" content="ChatArch public project map and documentation hub." />
+  <meta name="description" content="ChatArch public project map, recent project pulse, and documentation hub." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -238,6 +238,30 @@
     .card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
     .card-actions a { font-weight: 800; color: var(--teal); border-bottom: 2px solid currentColor; }
 
+    .pulse-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .pulse-card {
+      border: 1.5px solid var(--ink);
+      border-radius: 28px;
+      padding: 22px;
+      background: rgba(255, 249, 236, 0.74);
+      box-shadow: 6px 6px 0 rgba(23, 19, 15, 0.8);
+    }
+    .pulse-card p:not(.eyebrow) { color: #43382d; line-height: 1.55; }
+    .pulse-card a { display: inline-block; margin-top: 10px; color: var(--blue); font-weight: 800; border-bottom: 2px solid currentColor; }
+    .activity-list {
+      list-style: none;
+      margin: 26px 0 0;
+      padding: 0;
+      border: 1.5px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 249, 236, 0.62);
+      overflow: hidden;
+    }
+    .activity-list li { display: grid; grid-template-columns: 1fr 120px 220px; gap: 14px; padding: 13px 18px; border-bottom: 1px solid var(--line); align-items: center; }
+    .activity-list li:last-child { border-bottom: 0; }
+    .activity-list a { color: var(--blue); font-weight: 800; }
+    .activity-list span, .activity-list time { color: var(--muted); font-weight: 700; }
+
     .docs-route {
       display: grid;
       grid-template-columns: 0.85fr 1.15fr;
@@ -292,7 +316,8 @@
 
     @media (max-width: 880px) {
       .hero, .docs-route { grid-template-columns: 1fr; }
-      .pillars, .systems { grid-template-columns: 1fr; }
+      .pillars, .systems, .pulse-grid { grid-template-columns: 1fr; }
+      .activity-list li { grid-template-columns: 1fr; }
       .section-head { align-items: start; flex-direction: column; }
       .topbar { position: static; align-items: start; flex-direction: column; }
       h1 { max-width: none; }
@@ -309,6 +334,7 @@
     <nav aria-label="Primary">
       <a href="#charter">Charter</a>
       <a href="#systems">Public systems</a>
+      <a href="#recent">Recent pulse</a>
       <a href="#repos">Repository map</a>
       <a href="https://github.com/ChatArch">GitHub</a>
     </nav>
@@ -319,7 +345,7 @@
       <div class="hero-copy">
         <p class="kicker">public project map</p>
         <h1>Architecture for agent work.</h1>
-        <p class="lede">ChatArch is the public index for small, inspectable tools that help humans and agents operate software projects: environments, repositories, DNS, package releases, docs, skills, memory, and coordination.</p>
+        <p class="lede">ChatArch is the public index for small, inspectable tools that help humans and agents operate software projects: Glance dashboards, environments, repositories, DNS, package releases, docs, skills, memory, and coordination.</p>
         <div class="actions">
           <a class="button primary" href="#systems">Explore public systems</a>
           <a class="button accent" href="#repos">Open repository map</a>
@@ -327,8 +353,8 @@
         </div>
       </div>
       <aside class="manifesto" aria-label="Public homepage summary">
-        <div class="metric"><strong>44</strong><span>public repositories indexed from GitHub</span></div>
-        <div class="metric"><strong>1</strong><span>shared documentation domain for public project pages</span></div>
+        <div class="metric"><strong>72</strong><span>public repositories indexed from GitHub</span></div>
+        <div class="metric"><strong>1</strong><span>shared documentation domain for public project pages and Glance-style maps</span></div>
         <div class="metric"><strong>0</strong><span>private or internal repository names intentionally listed here</span></div>
       </aside>
     </section>
@@ -361,14 +387,25 @@
     <section id="systems" class="shell">
       <div class="section-head">
         <h2>Public systems.</h2>
-        <p>A short, curated slice of public repositories. Individual packages are peers in the architecture; no single project owns this homepage.</p>
+        <p>A curated slice of public repositories. Glance is now visible as a first-class dashboard surface, while individual packages remain peers in the architecture.</p>
       </div>
       <div class="systems">
           <article class="system-card">
             <div>
-              <p class="eyebrow">public surface</p>
+              <p class="eyebrow">dashboard surface</p>
+              <h3>ChatGlance</h3>
+              <p>Glance dashboard generation and maintenance CLI for public project maps, service snapshots, and subscription-detail pages.</p>
+            </div>
+            <div class="card-actions">
+              <a href="https://github.com/ChatArch/ChatGlance">GitHub</a>
+              <a href="/ChatGlance/">Docs path</a>
+            </div>
+          </article>
+          <article class="system-card">
+            <div>
+              <p class="eyebrow">github workflow</p>
               <h3>ChatGH</h3>
-              <p>GitHub operations and repository workflow CLI.</p>
+              <p>ChatArch-native GitHub operations for repository, PR, checks, and public Pages workflows.</p>
             </div>
             <div class="card-actions">
               <a href="https://github.com/ChatArch/ChatGH">GitHub</a>
@@ -377,9 +414,53 @@
           </article>
           <article class="system-card">
             <div>
-              <p class="eyebrow">public surface</p>
+              <p class="eyebrow">control plane</p>
+              <h3>ChatCRS</h3>
+              <p>CRS administration helpers for relay accounts, API keys, and operational visibility.</p>
+            </div>
+            <div class="card-actions">
+              <a href="https://github.com/ChatArch/ChatCRS">GitHub</a>
+              <a href="/ChatCRS/">Docs path</a>
+            </div>
+          </article>
+          <article class="system-card">
+            <div>
+              <p class="eyebrow">relay service</p>
+              <h3>claude-relay-service</h3>
+              <p>Self-hosted relay service work for unified Claude/OpenAI/Gemini-style access surfaces.</p>
+            </div>
+            <div class="card-actions">
+              <a href="https://github.com/ChatArch/claude-relay-service">GitHub</a>
+              <a href="/claude-relay-service/">Docs path</a>
+            </div>
+          </article>
+          <article class="system-card">
+            <div>
+              <p class="eyebrow">publishing</p>
+              <h3>ChatBlog</h3>
+              <p>Public narrative layer for project write-ups, docs posts, and release explanations.</p>
+            </div>
+            <div class="card-actions">
+              <a href="https://github.com/ChatArch/ChatBlog">GitHub</a>
+              <a href="/ChatBlog/">Docs path</a>
+            </div>
+          </article>
+          <article class="system-card">
+            <div>
+              <p class="eyebrow">media api</p>
+              <h3>ChatImg</h3>
+              <p>Image-generation client package and CRS-compatible media workflow experiments.</p>
+            </div>
+            <div class="card-actions">
+              <a href="https://github.com/ChatArch/ChatImg">GitHub</a>
+              <a href="/ChatImg/">Docs path</a>
+            </div>
+          </article>
+          <article class="system-card">
+            <div>
+              <p class="eyebrow">dns operations</p>
               <h3>ChatDNS</h3>
-              <p>ChatDNS: ChatArch DNS record, DDNS, and provider helper extracted from ChatTool.</p>
+              <p>DNS record, DDNS, and provider helper extracted from ChatArch operational tooling.</p>
             </div>
             <div class="card-actions">
               <a href="https://github.com/ChatArch/ChatDNS">GitHub</a>
@@ -388,42 +469,9 @@
           </article>
           <article class="system-card">
             <div>
-              <p class="eyebrow">public surface</p>
-              <h3>ChatEnv</h3>
-              <p>ChatTool Env manager</p>
-            </div>
-            <div class="card-actions">
-              <a href="https://github.com/ChatArch/ChatEnv">GitHub</a>
-              <a href="/ChatEnv/">Docs path</a>
-            </div>
-          </article>
-          <article class="system-card">
-            <div>
-              <p class="eyebrow">public surface</p>
-              <h3>ChatPyPI</h3>
-              <p>ChatPyPI: ChatArch Python package lifecycle helper extracted from ChatTool.</p>
-            </div>
-            <div class="card-actions">
-              <a href="https://github.com/ChatArch/ChatPyPI">GitHub</a>
-              <a href="/ChatPyPI/">Docs path</a>
-            </div>
-          </article>
-          <article class="system-card">
-            <div>
-              <p class="eyebrow">public surface</p>
-              <h3>ChatSkill</h3>
-              <p>ChatSkill: standalone ChatArch skills CLI extracted from ChatTool</p>
-            </div>
-            <div class="card-actions">
-              <a href="https://github.com/ChatArch/ChatSkill">GitHub</a>
-              <a href="/ChatSkill/">Docs path</a>
-            </div>
-          </article>
-          <article class="system-card">
-            <div>
-              <p class="eyebrow">public surface</p>
+              <p class="eyebrow">knowledge layer</p>
               <h3>ChatMemory</h3>
-              <p>Memory and knowledge workflow components.</p>
+              <p>Reusable memory, skills, and knowledge workflow components for agent collaboration.</p>
             </div>
             <div class="card-actions">
               <a href="https://github.com/ChatArch/ChatMemory">GitHub</a>
@@ -432,27 +480,102 @@
           </article>
           <article class="system-card">
             <div>
-              <p class="eyebrow">public surface</p>
-              <h3>ChatCI</h3>
-              <p>ChatCI: ChatArch Python package.</p>
+              <p class="eyebrow">environment</p>
+              <h3>ChatEnv</h3>
+              <p>Environment profile management for repeatable ChatArch CLI workflows.</p>
             </div>
             <div class="card-actions">
-              <a href="https://github.com/ChatArch/ChatCI">GitHub</a>
-              <a href="/ChatCI/">Docs path</a>
+              <a href="https://github.com/ChatArch/ChatEnv">GitHub</a>
+              <a href="/ChatEnv/">Docs path</a>
             </div>
           </article>
           <article class="system-card">
             <div>
-              <p class="eyebrow">public surface</p>
-              <h3>ChatBoard</h3>
-              <p>ChatBoard: ChatArch kanban board tooling package</p>
+              <p class="eyebrow">package release</p>
+              <h3>ChatPyPI</h3>
+              <p>Python package lifecycle helper for ChatArch package publishing and release gates.</p>
             </div>
             <div class="card-actions">
-              <a href="https://github.com/ChatArch/ChatBoard">GitHub</a>
-              <a href="/ChatBoard/">Docs path</a>
+              <a href="https://github.com/ChatArch/ChatPyPI">GitHub</a>
+              <a href="/ChatPyPI/">Docs path</a>
             </div>
           </article>
       </div>
+    </section>
+
+    <section id="recent" class="shell">
+      <div class="section-head">
+        <h2>Recent project pulse.</h2>
+        <p>Updated from public repository metadata and public-safe project summaries on 2026-08-14 13:42 +08:00. This section highlights movement without exposing private operations.</p>
+      </div>
+      <div class="pulse-grid">
+          <article class="pulse-card">
+            <p class="eyebrow">recent project pulse</p>
+            <h3>Glance becomes a first-class project surface</h3>
+            <p>ChatGlance is now listed as a public dashboard system, covering project inventory, service status, subscription details, and hourly refresh readbacks.</p>
+            <a href="https://github.com/ChatArch/ChatGlance">ChatGlance</a>
+          </article>
+          <article class="pulse-card">
+            <p class="eyebrow">recent project pulse</p>
+            <h3>CRS work split into service and admin layers</h3>
+            <p>The public map now separates the relay service surface from ChatCRS control-plane helpers instead of hiding both behind one label.</p>
+            <a href="https://github.com/ChatArch/ChatCRS">ChatCRS</a>
+          </article>
+          <article class="pulse-card">
+            <p class="eyebrow">recent project pulse</p>
+            <h3>Docs and publishing keep moving through ChatBlog</h3>
+            <p>Recent public write-ups and docs routes are presented as part of the organization map rather than private session artifacts.</p>
+            <a href="https://github.com/ChatArch/ChatBlog">ChatBlog</a>
+          </article>
+          <article class="pulse-card">
+            <p class="eyebrow">recent project pulse</p>
+            <h3>Package family expansion is visible</h3>
+            <p>Newer public packages such as ChatBili, ChatSMTP, ChatNLP, ChatAuth, ChatBrowser, and ChatCDN now appear in the repository table.</p>
+            <a href="https://github.com/ChatArch">GitHub org</a>
+          </article>
+      </div>
+      <ul class="activity-list" aria-label="Recently pushed public repositories">
+          <li>
+            <a href="https://github.com/ChatArch/ChatGlance">ChatGlance</a>
+            <span>Python</span>
+            <time datetime="2026-08-14T05:01:32Z">2026-08-14 05:01:32 UTC</time>
+          </li>
+          <li>
+            <a href="https://github.com/ChatArch/ChatMemory">ChatMemory</a>
+            <span>Python</span>
+            <time datetime="2026-08-14T03:54:16Z">2026-08-14 03:54:16 UTC</time>
+          </li>
+          <li>
+            <a href="https://github.com/ChatArch/ChatBlog">ChatBlog</a>
+            <span>MDX</span>
+            <time datetime="2026-08-13T22:27:21Z">2026-08-13 22:27:21 UTC</time>
+          </li>
+          <li>
+            <a href="https://github.com/ChatArch/claude-relay-service">claude-relay-service</a>
+            <span>JavaScript</span>
+            <time datetime="2026-08-13T18:40:07Z">2026-08-13 18:40:07 UTC</time>
+          </li>
+          <li>
+            <a href="https://github.com/ChatArch/qwen-audio-tts-realtime-demo">qwen-audio-tts-realtime-demo</a>
+            <span>Python</span>
+            <time datetime="2026-08-13T15:27:18Z">2026-08-13 15:27:18 UTC</time>
+          </li>
+          <li>
+            <a href="https://github.com/ChatArch/ChatImg">ChatImg</a>
+            <span>Python</span>
+            <time datetime="2026-08-13T09:22:56Z">2026-08-13 09:22:56 UTC</time>
+          </li>
+          <li>
+            <a href="https://github.com/ChatArch/ChatUp">ChatUp</a>
+            <span>Python</span>
+            <time datetime="2026-08-13T08:15:39Z">2026-08-13 08:15:39 UTC</time>
+          </li>
+          <li>
+            <a href="https://github.com/ChatArch/ChatBili">ChatBili</a>
+            <span>Python</span>
+            <time datetime="2026-08-13T03:45:18Z">2026-08-13 03:45:18 UTC</time>
+          </li>
+      </ul>
     </section>
 
     <section class="shell">
@@ -495,7 +618,19 @@
               <th scope="row"><a href="https://github.com/ChatArch/ChatArch.github.io">ChatArch.github.io</a></th>
               <td>HTML</td>
               <td>Public documentation hub for ChatArch projects</td>
-              <td><a href="/ChatArch.github.io/">/ChatArch.github.io/</a></td>
+              <td><a href="/">/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatAuth">ChatAuth</a></th>
+              <td>Python</td>
+              <td>Self-hosted OAuth-style refresh-token auth service for ChatArch.</td>
+              <td><a href="/ChatAuth/">/ChatAuth/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatBili">ChatBili</a></th>
+              <td>Python</td>
+              <td>Bilibili integration package for ChatArch workflows</td>
+              <td><a href="/ChatBili/">/ChatBili/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatBlog">ChatBlog</a></th>
@@ -504,10 +639,64 @@
               <td><a href="/ChatBlog/">/ChatBlog/</a></td>
             </tr>
             <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatBoard">ChatBoard</a></th>
+              <td>Python</td>
+              <td>ChatBoard: ChatArch kanban board tooling package</td>
+              <td><a href="/ChatBoard/">/ChatBoard/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatBridge">ChatBridge</a></th>
+              <td>Python</td>
+              <td>ChatBridge: A unified gateway for conversational AI integration.</td>
+              <td><a href="/ChatBridge/">/ChatBridge/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatBrowser">ChatBrowser</a></th>
+              <td>Python</td>
+              <td>ChatBrowser: ChatArch browser runtime and artifact identity package</td>
+              <td><a href="/ChatBrowser/">/ChatBrowser/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatCDN">ChatCDN</a></th>
+              <td>Python</td>
+              <td>Public ChatArch repository.</td>
+              <td><a href="/ChatCDN/">/ChatCDN/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatCI">ChatCI</a></th>
+              <td>Python</td>
+              <td>ChatCI: ChatArch Python package.</td>
+              <td><a href="/ChatCI/">/ChatCI/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatClash">ChatClash</a></th>
+              <td>Python</td>
+              <td>Public ChatArch repository.</td>
+              <td><a href="/ChatClash/">/ChatClash/</a></td>
+            </tr>
+            <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatCRS">ChatCRS</a></th>
               <td>Python</td>
               <td>ChatCRS package scaffold.</td>
               <td><a href="/ChatCRS/">/ChatCRS/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatCube">ChatCube</a></th>
+              <td>Python</td>
+              <td>ChatCube: ChatArch placeholder package for cube workflows.</td>
+              <td><a href="/ChatCube/">/ChatCube/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatData">ChatData</a></th>
+              <td>Python</td>
+              <td>ChatArch database and data management toolkit</td>
+              <td><a href="/ChatData/">/ChatData/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatDNS">ChatDNS</a></th>
+              <td>Python</td>
+              <td>ChatDNS: ChatArch DNS record, DDNS, and provider helper extracted from ChatTool.</td>
+              <td><a href="/ChatDNS/">/ChatDNS/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatDraw">ChatDraw</a></th>
@@ -520,6 +709,12 @@
               <td>Python</td>
               <td>ChatECNU: ECNU campus portal automation extracted from ChatNet</td>
               <td><a href="/ChatECNU/">/ChatECNU/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatEnv">ChatEnv</a></th>
+              <td>Python</td>
+              <td>ChatTool Env manager</td>
+              <td><a href="/ChatEnv/">/ChatEnv/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatExplore">ChatExplore</a></th>
@@ -540,6 +735,18 @@
               <td><a href="/ChatGame/">/ChatGame/</a></td>
             </tr>
             <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatGH">ChatGH</a></th>
+              <td>Python</td>
+              <td>Public ChatArch repository.</td>
+              <td><a href="/ChatGH/">/ChatGH/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatGlance">ChatGlance</a></th>
+              <td>Python</td>
+              <td>ChatArch Glance dashboard generation and maintenance CLI</td>
+              <td><a href="/ChatGlance/">/ChatGlance/</a></td>
+            </tr>
+            <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatHFD">ChatHFD</a></th>
               <td>Python</td>
               <td>ChatHFD: ChatArch Hugging Face Download tooling package</td>
@@ -550,6 +757,12 @@
               <td>Python</td>
               <td>ChatImg package</td>
               <td><a href="/ChatImg/">/ChatImg/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatJiXia">ChatJiXia</a></th>
+              <td>Python</td>
+              <td>ChatJiXia: ChatArch package for JiXia Lean analysis integration.</td>
+              <td><a href="/ChatJiXia/">/ChatJiXia/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatJulia">ChatJulia</a></th>
@@ -576,10 +789,40 @@
               <td><a href="/ChatLink/">/ChatLink/</a></td>
             </tr>
             <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatLinux">ChatLinux</a></th>
+              <td>Python</td>
+              <td>ChatArch Linux operations package.</td>
+              <td><a href="/ChatLinux/">/ChatLinux/</a></td>
+            </tr>
+            <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatLive">ChatLive</a></th>
               <td>Python</td>
               <td>ChatLive: ChatArch Python package.</td>
               <td><a href="/ChatLive/">/ChatLive/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatMail">ChatMail</a></th>
+              <td>Python</td>
+              <td>Public ChatArch repository.</td>
+              <td><a href="/ChatMail/">/ChatMail/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatMath">ChatMath</a></th>
+              <td>Python</td>
+              <td>ChatMath: ChatArch mathematics tooling package</td>
+              <td><a href="/ChatMath/">/ChatMath/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatMemory">ChatMemory</a></th>
+              <td>Python</td>
+              <td>Public ChatArch repository.</td>
+              <td><a href="/ChatMemory/">/ChatMemory/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatModel">ChatModel</a></th>
+              <td>Python</td>
+              <td>ChatArch model tooling package.</td>
+              <td><a href="/ChatModel/">/ChatModel/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatNet">ChatNet</a></th>
@@ -588,10 +831,40 @@
               <td><a href="/ChatNet/">/ChatNet/</a></td>
             </tr>
             <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatNLP">ChatNLP</a></th>
+              <td>Python</td>
+              <td>ChatNLP: ChatArch placeholder package for NLP workflows.</td>
+              <td><a href="/ChatNLP/">/ChatNLP/</a></td>
+            </tr>
+            <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatNPM">ChatNPM</a></th>
               <td>Python</td>
               <td>ChatNPM: ChatArch npm registry and package maintenance helper</td>
               <td><a href="/ChatNPM/">/ChatNPM/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatOL">ChatOL</a></th>
+              <td>Python</td>
+              <td>ChatOL: Python client and CLI for Overleaf workflows</td>
+              <td><a href="/ChatOL/">/ChatOL/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatPost">ChatPost</a></th>
+              <td>Python</td>
+              <td>Multi-platform content publishing infrastructure for ChatArch.</td>
+              <td><a href="/ChatPost/">/ChatPost/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatPPT">ChatPPT</a></th>
+              <td>Python</td>
+              <td>ChatArch PPT tooling package.</td>
+              <td><a href="/ChatPPT/">/ChatPPT/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatPyPI">ChatPyPI</a></th>
+              <td>Python</td>
+              <td>ChatPyPI: ChatArch Python package lifecycle helper extracted from ChatTool.</td>
+              <td><a href="/ChatPyPI/">/ChatPyPI/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/Chatqiniu">Chatqiniu</a></th>
@@ -604,6 +877,12 @@
               <td>Python</td>
               <td>Public ChatArch repository.</td>
               <td><a href="/ChatRSS/">/ChatRSS/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatSage">ChatSage</a></th>
+              <td>Python</td>
+              <td>ChatSage: ChatArch Python CLI package scaffold</td>
+              <td><a href="/ChatSage/">/ChatSage/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatServe">ChatServe</a></th>
@@ -624,6 +903,18 @@
               <td><a href="/ChatSite/">/ChatSite/</a></td>
             </tr>
             <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatSkill">ChatSkill</a></th>
+              <td>Python</td>
+              <td>ChatSkill: standalone ChatArch skills CLI extracted from ChatTool</td>
+              <td><a href="/ChatSkill/">/ChatSkill/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatSMTP">ChatSMTP</a></th>
+              <td>Python</td>
+              <td>ChatArch SMTP tooling package.</td>
+              <td><a href="/ChatSMTP/">/ChatSMTP/</a></td>
+            </tr>
+            <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatSSH">ChatSSH</a></th>
               <td>Python</td>
               <td>Placeholder repository for future ChatArch ChatSSH package.</td>
@@ -634,6 +925,12 @@
               <td>Python</td>
               <td>Public ChatArch repository.</td>
               <td><a href="/ChatStyle/">/ChatStyle/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatSync">ChatSync</a></th>
+              <td>Python</td>
+              <td>Local-first directory sync with deterministic plans, verification, CLI, API, and Web.</td>
+              <td><a href="/ChatSync/">/ChatSync/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatTea">ChatTea</a></th>
@@ -649,7 +946,7 @@
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatUp">ChatUp</a></th>
-              <td>Shell</td>
+              <td>Python</td>
               <td>ChatTool Setup</td>
               <td><a href="/ChatUp/">/ChatUp/</a></td>
             </tr>
@@ -660,10 +957,22 @@
               <td><a href="/ChatUV/">/ChatUV/</a></td>
             </tr>
             <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatVideo">ChatVideo</a></th>
+              <td>Python</td>
+              <td>ChatArch video tooling package.</td>
+              <td><a href="/ChatVideo/">/ChatVideo/</a></td>
+            </tr>
+            <tr>
               <th scope="row"><a href="https://github.com/ChatArch/ChatWord">ChatWord</a></th>
               <td>Python</td>
               <td>ChatWord: Word document workflows for ChatArch.</td>
               <td><a href="/ChatWord/">/ChatWord/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/ChatZulip">ChatZulip</a></th>
+              <td>Python</td>
+              <td>ChatZulip: ChatArch Zulip integration package.</td>
+              <td><a href="/ChatZulip/">/ChatZulip/</a></td>
             </tr>
             <tr>
               <th scope="row"><a href="https://github.com/ChatArch/claude-relay-service">claude-relay-service</a></th>
@@ -695,6 +1004,36 @@
               <td>A static analysis tool for Lean 4.</td>
               <td><a href="/jixia/">/jixia/</a></td>
             </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/multica">multica</a></th>
+              <td>Go</td>
+              <td>The open-source managed agents platform. Turn coding agents into real teammates — assign tasks, track progress, compound skills.</td>
+              <td><a href="/multica/">/multica/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/qwen-audio-tts-realtime-demo">qwen-audio-tts-realtime-demo</a></th>
+              <td>Python</td>
+              <td>Qwen Token Plan TTS, Realtime communication, and ASR transcription demo</td>
+              <td><a href="/qwen-audio-tts-realtime-demo/">/qwen-audio-tts-realtime-demo/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/TermCap">TermCap</a></th>
+              <td>Python</td>
+              <td>Record terminal sessions as SVG animations or GIF animations.</td>
+              <td><a href="/TermCap/">/TermCap/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/twikoo">twikoo</a></th>
+              <td>-</td>
+              <td>💬 一个简洁、安全、免费的静态网站评论系统 | A simple, safe, free comment system.</td>
+              <td><a href="/twikoo/">/twikoo/</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ChatArch/Wechatsync">Wechatsync</a></th>
+              <td>-</td>
+              <td>一键同步文章到多个内容平台，支持今日头条、WordPress、知乎、简书、掘金、CSDN、typecho各大平台，一次发布，多平台同步发布。解放个人生产力</td>
+              <td><a href="/Wechatsync/">/Wechatsync/</a></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -703,7 +1042,7 @@
 
   <footer class="shell">
     <span>ChatArch public project map.</span>
-    <span>Generated 2026-07-14 18:41 UTC from GitHub public repository metadata.</span>
+    <span>Generated 2026-08-14 05:42 UTC from GitHub public repository metadata.</span>
   </footer>
 </body>
 </html>
