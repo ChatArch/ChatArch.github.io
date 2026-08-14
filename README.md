@@ -21,6 +21,7 @@ Only public GitHub repositories are indexed. Private repositories, credentials, 
 - Organization homepage route: `https://arch.gh.wzhecnu.cn/`
 - Lowercase project aliases generated after each homepage update.
 - Alias behavior: `/<projectname>/...` redirects to the canonical `/<ProjectName>/...` route when the public repo name uses mixed case.
+- Curated system cards mark `Docs route pending` when the project's public Pages route was verified unavailable; the repository map still shows the conventional future route.
 
 ## Local edit
 
