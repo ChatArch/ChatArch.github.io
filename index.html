@@ -235,8 +235,9 @@
 
     .system-card p:not(.eyebrow) { color: #43382d; line-height: 1.55; margin: 12px 0 0; }
 
-    .card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .card-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     .card-actions a { font-weight: 800; color: var(--teal); border-bottom: 2px solid currentColor; }
+    .card-actions .pending-action { font-weight: 800; color: var(--muted); border: 1.5px dashed var(--line); border-radius: 999px; padding: 2px 8px; }
 
     .pulse-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .pulse-card {
@@ -398,7 +399,7 @@
             </div>
             <div class="card-actions">
               <a href="https://github.com/ChatArch/ChatGlance">GitHub</a>
-              <a href="/ChatGlance/">Docs path</a>
+              <span class="pending-action">Docs route pending</span>
             </div>
           </article>
           <article class="system-card">
@@ -431,7 +432,7 @@
             </div>
             <div class="card-actions">
               <a href="https://github.com/ChatArch/claude-relay-service">GitHub</a>
-              <a href="/claude-relay-service/">Docs path</a>
+              <span class="pending-action">Docs route pending</span>
             </div>
           </article>
           <article class="system-card">
@@ -475,7 +476,7 @@
             </div>
             <div class="card-actions">
               <a href="https://github.com/ChatArch/ChatMemory">GitHub</a>
-              <a href="/ChatMemory/">Docs path</a>
+              <span class="pending-action">Docs route pending</span>
             </div>
           </article>
           <article class="system-card">
